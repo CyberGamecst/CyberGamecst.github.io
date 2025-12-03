@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nous 3 Ans ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 50%, #ff9ab1 100%);
+      overflow-x: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background 1s ease-in-out;
+    }
+
+    body.bg-variant-1 {
+      background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 50%, #ff9ab1 100%);
+    }
+
+    body.bg-variant-2 {
+      background: linear-gradient(135deg, #f8b6db 0%, #ff6b9d 50%, #ff8fab 100%);
+    }
+
+    body.bg-variant-3 {
+      background: linear-gradient(135deg, #ffe0ec 0%, #ffb3d9 50%, #ff99c8 100%);
+    }
+
+    body.bg-variant-4 {
+      background: linear-gradient(135deg, #ffc0cb 0%, #ff69b4 50%, #ff1493 100%);
+    }
+
+    body.bg-variant-5 {
+      background: linear-gradient(135deg, #ffb3d9 0%, #ff85b3 50%, #ff6fa0 100%);
+    }
+
+    body.bg-variant-6 {
+      background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ff9eb9 100%);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 30px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      margin: 20px;
+      text-align: center;
+      animation: slideIn 0.6s ease-out;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #login {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #content {
+      display: none;
+      flex-direction: column;
+      gap: 25px;
+      animation: slideIn 0.6s ease-out;
+    }
+
+    h2 {
+      color: #ff4d88;
+      font-size: 32px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    h3 {
+      color: #ff4d88;
+      font-size: 22px;
+      margin-top: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #b30059;
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+
+    input {
+      padding: 15px;
+      border-radius: 15px;
+      border: 2px solid #ff4d88;
+      font-size: 16px;
+      text-align: center;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #ff6aa6;
+      box-shadow: 0 0 10px rgba(255, 77, 136, 0.3);
+    }
+
+    input::placeholder {
+      color: #ffb3d9;
+    }
+
+    button {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #ff4d88, #ff6aa6);
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(255, 77, 136, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 77, 136, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    #error {
+      color: #d32f2f;
+      font-weight: 600;
+      display: none;
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .counter {
+      background: linear-gradient(135deg, #ffecf0, #ffe0e9);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 15px 0;
+      border: 2px solid #ff4d88;
+    }
+
+    .counter-value {
+      font-size: 48px;
+      font-weight: bold;
+      color: #ff4d88;
+      margin: 10px 0;
+    }
+
+    .counter-label {
+      font-size: 18px;
+      color: #b30059;
+      font-weight: 600;
+    }
+
+    .counter-details {
+      font-size: 13px;
+      color: #ff4d88;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    .slider {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 20px;
+      margin: 20px 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #f5e6e8, #f9d5e0);
+      position: relative;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+      height: 100%;
+      width: 100%;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .slider-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ffb3d9;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .dot.active {
+      background: #ff4d88;
+      width: 30px;
+      border-radius: 5px;
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: fall 5s linear forwards;
+      z-index: -1;
+    }
+
+    @keyframes fall {
+      0% {
+        opacity: 0.8;
+        transform: translateY(-50px) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    .message-box {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      padding: 20px;
+      border-radius: 15px;
+      border-left: 5px solid #ff4d88;
+      margin: 10px 0;
+    }
+
+    .message-box p {
+      color: #d84315;
+      font-style: italic;
+    }
+
+    .memory-item {
+      background: linear-gradient(135deg, #ffe0e9, #fff0f5);
+      padding: 18px;
+      margin: 12px 0;
+      border-radius: 15px;
+      border-left: 6px solid #ff4d88;
+      border: 2px solid #ffb3d9;
+      text-align: center;
+      font-size: 18px;
+      color: #b30059;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(255, 77, 136, 0.1);
+      transition: 0.3s;
+    }
+
+    .memory-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 77, 136, 0.2);
+      background: linear-gradient(135deg, #ffb3d9, #ffe0e9);
+      cursor: pointer;
+    }
+
+    .memory-date {
+      font-size: 12px;
+      color: #ff4d88;
+      font-weight: 700;
+      margin-top: 8px;
+      display: none;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .memory-date.show {
+      display: block;
+    }
+
+    .star-rating {
+      font-size: 28px;
+      margin: 15px 0;
+      letter-spacing: 5px;
+    }
+
+    .toggle-btn {
+      background: #ffecf0;
+      border: 2px solid #ff4d88;
+      color: #ff4d88;
+      padding: 10px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .toggle-btn:hover {
+      background: #ff4d88;
+      color: white;
+    }
+
+    .toggle-btn.active {
+      background: #ff4d88;
+      color: white;
+    }
+
+    .bonus-section {
+      display: none;
+      background: linear-gradient(135deg, #ffe0e9, #ffecf0);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 15px 0;
+      border: 2px dashed #ff4d88;
+    }
+
+    .bonus-section.show {
+      display: block;
+      animation: slideIn 0.6s ease-out;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #ff4d88;
+      pointer-events: none;
+      animation: confettiFall 3s linear forwards;
+      z-index: -1;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ff4d88;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+      min-height: 80px;
+      color: #b30059;
+    }
+
+    textarea:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(255, 77, 136, 0.3);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    .stat-box {
+      background: linear-gradient(135deg, #ffe0e9, #ffecf0);
+      padding: 15px;
+      border-radius: 12px;
+      border: 2px solid #ff4d88;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: bold;
+      color: #ff4d88;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #b30059;
+      margin-top: 5px;
+    }
+
+    .bg-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 77, 136, 0.9);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 77, 136, 0.3);
+      transition: 0.3s;
+      z-index: 100;
+    }
+
+    .bg-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(255, 77, 136, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-variant-1">
+
+  <div class="container" id="login">
+    <h2>🚧 Surprise 🚧</h2>
+    <p>Entre le mot de passe pour accéder à notre petite surprise 🔐</p>
+    <input id="pwd" type="password" placeholder="Mot de passe" autocomplete="off" />
+    <button onclick="unlock()">Valider</button>
+    <p id="error">❌ Mot de passe incorrect. Réessaye ! 💭</p>
+  </div>
+
+  <div class="container" id="content">
+    <h2>💖 Joyeux 3 Ans Mon Amour 💖</h2>
+    <p>Chaque moment avec toi est un trésor. Voici un petit espace rien que pour nous 💕</p>
+
+    <!-- Compteur de jours ensemble -->
+    <div class="counter">
+      <div class="counter-label">Jours ensemble</div>
+      <div class="counter-value" id="daysCounter">1095</div>
+      <p style="font-size: 14px; color: #b30059;">Chaque jour est un cadeau 💝</p>
+    </div>
+
+    <!-- Compteur du premier baiser -->
+    <div class="counter" style="background: linear-gradient(135deg, #fff9e6, #ffe6cc); border-color: #ffb347;">
+      <div class="counter-label" style="color: #ff8c00;">💋 Depuis notre premier baiser 💋</div>
+      <div class="counter-value" id="kissCounter" style="color: #ff8c00;">0</div>
+      <div class="counter-details" id="kissDetails"></div>
+    </div>
+
+    <!-- Galerie photos -->
+    <div class="slider" id="slider">
+      <div class="slides" id="slides">
+        <img src="photo1.jpg" alt="Souvenir 1" />
+        <img src="photo2.JPG" alt="Souvenir 2" />
+        <img src="photo3.jpg" alt="Souvenir 3" />
+        <img src="photo4.jpg" alt="Souvenir 4" />
+        <img src="photo5.jpg" alt="Souvenir 5" />
+        <img src="photo6.jpg" alt="Souvenir 6" />
+        <img src="photo7.jpg" alt="Souvenir 7" />
+        <img src="photo8.jpg" alt="Souvenir 8" />
+        <img src="photo9.jpg" alt="Souvenir 9" />
+        <img src="photo10.jpg" alt="Souvenir 10" />
+      </div>
+    </div>
+
+    <div class="slider-controls" id="dots"></div>
+
+    <!-- Statistiques -->
+    <div class="stats">
+      <div class="stat-box">
+        <div class="stat-number" id="photoCount">Beaucoup TROP !</div>
+        <div class="stat-label">Photos ensemble</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Souvenirs</div>
+      </div>
+    </div>
+
+    <!-- Évaluation des photos -->
+    <div>
+      <h3>Comment tu trouves cette photo ? ⭐</h3>
+      <div class="star-rating" id="starRating">
+        <span onclick="rateStar(1)" style="cursor:pointer">☆</span>
+        <span onclick="rateStar(2)" style="cursor:pointer">☆</span>
+        <span onclick="rateStar(3)" style="cursor:pointer">☆</span>
+        <span onclick="rateStar(4)" style="cursor:pointer">☆</span>
+        <span onclick="rateStar(5)" style="cursor:pointer">☆</span>
+      </div>
+      <p id="ratingMessage" style="font-size: 14px; color: #ff4d88; font-weight: 600;"></p>
+    </div>
+
+    <!-- Messages spéciaux -->
+    <div class="message-box">
+      <p>Ces photos racontent notre histoire, chaque sourire, chaque câlin… et il y en aura encore plein d'autres ❤️</p>
+    </div>
+
+    <!-- Bonus caché -->
+    <button class="toggle-btn" onclick="toggleBonus()" id="bonusBtn">🎁 Déverrouille mon secret 🎁</button>
+    
+    <div class="bonus-section" id="bonusSection">
+      <h3>💌 Mon secret pour toi</h3>
+      <p>Tu es le meilleur choix que j'ai jamais fait. Merci d'être là, chaque jour. Tu me rends tellement heureux(se). 💕</p>
+      <p style="font-size: 18px; margin-top: 20px;">Tape quelque chose de spécial :</p>
+      <textarea id="specialMessage" placeholder="Écris un petit mot pour moi..."></textarea>
+      <button onclick="saveMessage()" style="margin-top: 10px; width: 100%;">Sauvegarder mon message 💌</button>
+      <p id="messageSaved" style="display:none; color: #28a745; font-weight: 600; margin-top: 10px;">✅ Message sauvegardé dans le cœur 💘</p>
+    </div>
+
+    <!-- Souvenirs mémorables -->
+    <h3>✨ Souvenirs mémorables</h3>
+    <div class="memories-list" id="memoriesList">
+      <div class="memory-item" onclick="toggleMemoryDate(this)">
+        <span>❤️ Notre première rencontre</span>
+        <div class="memory-date">13 Décembre 2022</div>
+      </div>
+      <div class="memory-item" onclick="toggleMemoryDate(this)">
+        <span>😂 Nos fous rires</span>
+        <div class="memory-date">Tous les jours 💕</div>
+      </div>
+      <div class="memory-item" onclick="toggleMemoryDate(this)">
+        <span>🛏️ Notre premier dodo ensemble</span>
+        <div class="memory-date">je sais plus j'ai dormi depuis💤</div>
+      </div>
+      <div class="memory-item" onclick="toggleMemoryDate(this)">
+        <span>🎵 Cette chanson qui nous unit</span>
+        <div class="memory-date">Comic sans MS / Caballero & JeanJass - Adèle Castillon 🎶</div>
+      </div>
+    </div>
+
+    <!-- Message final -->
+    <p style="margin-top: 20px; font-size: 18px; font-weight: 600;">Rappelle-toi que je suis là pour toi à chaque instant et que je t'aimerai pour toujours 💕</p>
+
+    <!-- Bouton surprise -->
+    <button onclick="triggerCelebration()" style="width: 100%; margin-top: 15px; font-size: 16px;">🎉 Fais tomber la magie ! 🎉</button>
+  </div>
+
+  <button class="bg-toggle" onclick="changeBackground()" title="Changer la couleur de l'arrière-plan">🎨</button>
+
+  <script>
+    const password = "V27A9L";
+    let currentSlide = 0;
+    let slides = [];
+    let autoSlideTimer;
+    let currentBgVariant = 1;
+    const anniversary = new Date("2022-12-13");
+    const firstKiss = new Date("2022-12-13"); // À adapter à votre date du premier baiser
+
+    function unlock() {
+      const input = document.getElementById("pwd").value;
+      if(input === password){
+        document.getElementById("login").style.display = 'none';
+        document.getElementById("content").style.display = 'flex';
+        startSlider();
+        updateDayCounter();
+        updateKissCounter();
+        setInterval(updateKissCounter, 1000);
+      } else {
+        document.getElementById("error").style.display = 'block';
+        document.getElementById("pwd").value = '';
+        setTimeout(() => {
+          document.getElementById("error").style.display = 'none';
+        }, 3000);
+      }
+    }
+
+    function startSlider() {
+      slides = document.querySelectorAll('.slides img');
+      document.getElementById("photoCount").textContent = slides.length;
+      createDots();
+      updateSlider();
+      startAutoSlide();
+    }
+
+    function createDots() {
+      const dotsContainer = document.getElementById('dots');
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function updateSlider() {
+      const slidesEl = document.getElementById('slides');
+      slidesEl.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+
+      resetStars();
+      document.getElementById("ratingMessage").textContent = '';
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlider();
+    }
+
+    function goToSlide(n) {
+      currentSlide = n;
+      updateSlider();
+      clearInterval(autoSlideTimer);
+      startAutoSlide();
+    }
+
+    function startAutoSlide() {
+      autoSlideTimer = setInterval(nextSlide, 4000);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('content').style.display !== 'none') {
+        if (e.key === 'ArrowRight') {
+          nextSlide();
+          clearInterval(autoSlideTimer);
+          startAutoSlide();
+        }
+        if (e.key === 'ArrowLeft') {
+          currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+          updateSlider();
+          clearInterval(autoSlideTimer);
+          startAutoSlide();
+        }
+      }
+    });
+
+    document.getElementById('pwd').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') unlock();
+    });
+
+    function rateStar(rating) {
+      const messages = [
+        "😔 Ok... on peut mieux faire",
+        "😐 Pas mal",
+        "🙂 Jolie",
+        "😍 Tu es magnifique !",
+        "🤩 TU ES PARFAIT(E) ! 💞"
+      ];
+      document.getElementById("ratingMessage").textContent = messages[rating - 1];
+      
+      for(let i = 1; i <= 5; i++) {
+        const star = document.querySelectorAll('#starRating span')[i-1];
+        star.textContent = i <= rating ? '★' : '☆';
+      }
+
+      if(rating === 5) triggerCelebration();
+    }
+
+    function resetStars() {
+      document.querySelectorAll('#starRating span').forEach(star => {
+        star.textContent = '☆';
+      });
+    }
+
+    function updateDayCounter() {
+      const now = new Date();
+      const diff = now - anniversary;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("daysCounter").textContent = days;
+    }
+
+    function updateKissCounter() {
+      const now = new Date();
+      const diff = now - firstKiss;
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      
+      document.getElementById("kissCounter").textContent = days;
+      document.getElementById("kissDetails").textContent = `${hours}h ${minutes}m ${seconds}s 💕`;
+    }
+
+    function toggleBonus() {
+      const section = document.getElementById("bonusSection");
+      const btn = document.getElementById("bonusBtn");
+      section.classList.toggle("show");
+      btn.classList.toggle("active");
+    }
+
+    function toggleMemoryDate(element) {
+      const dateDiv = element.querySelector('.memory-date');
+      dateDiv.classList.toggle('show');
+    }
+
+    function saveMessage() {
+      const msg = document.getElementById("specialMessage").value;
+      if(msg.trim()) {
+        document.getElementById("messageSaved").style.display = 'block';
+        triggerCelebration();
+        setTimeout(() => {
+          document.getElementById("messageSaved").style.display = 'none';
+          document.getElementById("specialMessage").value = '';
+        }, 3000);
+      }
+    }
+
+    function changeBackground() {
+      currentBgVariant = currentBgVariant % 6 + 1;
+      document.body.className = `bg-variant-${currentBgVariant}`;
+    }
+
+    function triggerCelebration() {
+      for(let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * window.innerWidth + 'px';
+          confetti.style.background = ['#ff4d88', '#ffb3d9', '#ff6aa6', '#ffd4e5'][Math.floor(Math.random() * 4)];
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 3000);
+        }, i * 30);
+      }
+
+      for(let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.innerHTML = ['❤️', '💕', '💖', '💗'][Math.floor(Math.random() * 4)];
+        heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+    }
+
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.innerHTML = ['❤️', '💕', '💖', '💗'][Math.floor(Math.random() * 4)];
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 800);
+  </script>
+
+</body>
+</html>
