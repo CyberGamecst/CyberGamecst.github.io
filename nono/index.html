@@ -573,24 +573,35 @@
     const anniversary = new Date("2022-12-13");
     const firstKiss = new Date("2022-12-13"); // À adapter à votre date du premier baiser
 
-    function unlock() {
-      const input = document.getElementById("pwd").value;
-      if(input === password){
-        document.getElementById("login").style.display = 'none';
-        document.getElementById("content").style.display = 'flex';
-        startSlider();
-        updateDayCounter();
-        updateKissCounter();
-        setInterval(updateKissCounter, 1000);
-      } else {
-        document.getElementById("error").style.display = 'block';
-        document.getElementById("pwd").value = '';
-        setTimeout(() => {
-          document.getElementById("error").style.display = 'none';
-        }, 3000);
-      }
-    }
+  async function unlock() {
+  const input = document.getElementById("pwd").value;
+  
+  const response = await fetch("https://script.google.com/macros/s/AKfycbwLZ7qfGXmrbM42_MCnfDyuOpSxMilmJL4yoJ4dNt80H6QhmPvPB_V-PnsJTwG8gSM0wA/exec", {
+    method: "POST",
+    body: JSON.stringify({ password: input })
+  });
 
+  const result = await response.json();
+
+  if (result.access === true) {
+    // Succès : montrer le contenu
+    document.getElementById("login").style.display = 'none';
+    document.getElementById("content").style.display = 'flex';
+
+    startSlider();
+    updateDayCounter();
+    updateKissCounter();
+    setInterval(updateKissCounter, 1000);
+
+  } else {
+    // Mot de passe incorrect
+    document.getElementById("error").style.display = 'block';
+    document.getElementById("pwd").value = '';
+    setTimeout(() => {
+      document.getElementById("error").style.display = 'none';
+    }, 3000);
+  }
+}
     function startSlider() {
       slides = document.querySelectorAll('.slides img');
       document.getElementById("photoCount").textContent = slides.length;
@@ -766,4 +777,5 @@
 
 </body>
 </html>
+
 
