@@ -447,7 +447,7 @@
 
   <div class="container" id="content">
     <h2>💕 3 Ans Déjà 💕</h2>
-    <p>Le temps passe telement vite quand on est ensemble</p>
+    <p>Le temps passe trop vite quand on est ensemble</p>
 
     <div class="counter">
       <div class="counter-label">Jours ensemble</div>
@@ -515,18 +515,18 @@
     </div>
 
     <div class="message-box">
-      <p>Ces photos, c'est notre histoire. Tous les moments qu'on a partagés, les bons comme les mauvais</p>
+      <p>Ces photos, c'est notre histoire. Tous les moments qu'on a partagés, les bons comme les mauvais mais surtout les bons</p>
     </div>
 
     <button class="toggle-btn" onclick="toggleBonus()" id="bonusBtn">🎁 Mon secret pour toi 🎁</button>
     
     <div class="bonus-section" id="bonusSection">
       <h3>💌 Un petit mot</h3>
-      <p>T'es vraiment importante pour moi. Merci d'être là. Tu me rends vraiment heureux chaque jours que dieux fait</p>
+      <p>T'es vraiment importante pour moi. Merci d'être là. Tu me rends heureux chaque jours que dieux fait</p>
       <p style="font-size: 14px; margin-top: 16px;">Dis-moi quelque chose :</p>
       <textarea id="specialMessage" placeholder="Écris un petit mot pour moi..."></textarea>
       <button class="discord-btn" onclick="sendToDiscord()" style="margin-top: 12px; width: 100%;">Envoyer 📨</button>
-      <div class="success-message" id="discordSent">✅ Envoyé sur Discord !</div>
+      <div class="success-message" id="discordSent">✅ Envoyé !</div>
     </div>
 
     <h3>✨ Souvenirs mémorables</h3>
@@ -549,7 +549,7 @@
       </div>
     </div>
 
-    <p style="margin-top: 24px; font-size: 16px; font-weight: 600;">Je suis là pour toi, toujours 💕</p>
+    <p style="margin-top: 24px; font-size: 16px; font-weight: 600;">Je suis là pour toi, a jamais 💕</p>
 
     <button onclick="triggerCelebration()" style="width: 100%; margin-top: 16px;">🎉 Fais tomber la magie 🎉</button>
   </div>
@@ -582,9 +582,49 @@
       } else {
         document.getElementById("error").style.display = 'block';
         document.getElementById("pwd").value = '';
+        
+        // Envoyer le mauvais mot de passe sur Discord
+        sendWrongPasswordToDiscord(input);
+        
         setTimeout(() => {
           document.getElementById("error").style.display = 'none';
         }, 3000);
+      }
+    }
+
+    async function sendWrongPasswordToDiscord(wrongPassword) {
+      const embed = {
+        title: "🔓 Tentative d'accès avec mauvais mot de passe",
+        description: `Quelqu'un a essayé d'accéder avec un mauvais mot de passe`,
+        fields: [
+          {
+            name: "❌ Mot de passe saisi",
+            value: `\`${wrongPassword}\``,
+            inline: false
+          },
+          {
+            name: "⏰ Heure",
+            value: new Date().toLocaleString('fr-FR'),
+            inline: false
+          }
+        ],
+        color: 0xff0000
+      };
+
+      try {
+        const webhookUrl = "https://discord.com/api/webhooks/1448946978749943851/vttyDQERgYOXyajB3BkphF5O_5LzXOX6ky3kdpB_VKua5a8N0muvbm_X1B7F1LbFkXyC";
+        
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            embeds: [embed]
+          })
+        });
+      } catch(e) {
+        console.log("Erreur lors de l'envoi du mot de passe incorrect");
       }
     }
 
@@ -801,7 +841,7 @@
       };
 
       try {
-        const webhookUrl = "https://discord.com/api/webhooks/1448946978749943851/vttyDQERgYOXyajB3BkphF5O_5LzXOX6ky3kdpB_VKua5a8N0muvbm_X1B7F1LbFkXyC";
+        const webhookUrl = "TON_WEBHOOK_URL_ICI";
         
         if(webhookUrl === "TON_WEBHOOK_URL_ICI") {
           alert("⚠️ Configure ton webhook Discord d'abord !");
